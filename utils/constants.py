@@ -23,5 +23,6 @@ BOOK_OPTIONS = {
     "3": "Agregar un libro",
     "4": "Buscar un libro",
     "5": "Eliminar un libro",
+    "6": "Guardar libros en localdb",
     "7": "Salir del programa"
 }
