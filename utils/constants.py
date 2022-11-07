@@ -22,5 +22,6 @@ BOOK_OPTIONS = {
     "2": "Mostrar los libros",
     "3": "Agregar un libro",
     "4": "Buscar un libro",
+    "5": "Eliminar un libro",
     "7": "Salir del programa"
 }
