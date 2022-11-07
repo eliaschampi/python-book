@@ -39,7 +39,96 @@ if chooseOption == "1":
 elif chooseOption == "2":
     print("Has elegido las formas")
 
+elif chooseOption == "3":
+    print("Estas son las habilidades de los pokemones: ")
 
+elif chooseOption == "3":
+    print("Estas son las habilidades de los pokemones: ")
+    def pokemon_abilities(url_abil = 'https://pokeapi.co/api/v2/ability/', offset = 0):
+        args = {'offset' : offset} if offset else {}
+
+        response_abil = requests.get(url_abil, params=args)
+        if response_abil.status_code == 200:
+            payload_abil = response_abil.json()
+            results_abil = payload_abil.get('results', [])
+
+            if results_abil:
+                for pokemon_abil in results_abil:
+                    name_abil = pokemon_abil['name']
+                    print(name_abil)
+            #AGREGAR UN IF PARA TRAER LOS POKEMS DE CIERTAS HABILIDADES
+            next_abilities = input("Continuar listando? [Y/N]: ").lower()
+            if next_abilities == "y":
+                pokemon_abilities(offset=offset+20)
+
+            else:
+                pokemon_abilities = int(input("Ingresa una de las habilidades para mostrar los pokemons con dicha habilidad(1,2,3,...327): "))
+
+                def results_abilities(numabilities):
+                    url_results_abilities = "https://pokeapi.co/api/v2/pokemon-habitat/" + str(numabilities)
+                    response_results_abilities = requests.get(url_results_abilities)
+
+
+                    if response_results_abilities.status_code == 200:
+
+                        payload_results_abilities = response_results_abilities.json()
+                        pokemon_results_abilities = payload_results_abilities.get('results', [])
+                        
+                        if pokemon_results_abilities:
+                            for pokemon_results_abilities in pokemon_results_abilities:
+                                name_results_abilities = pokemon_results_abilities['name']
+                                print(name_results_abilities)
+                       
+                results_abilities(pokemon_abilities) 
+
+
+    if __name__ == '__main__':
+        url_abil = "https://pokeapi.co/api/v2/ability/" 
+        pokemon_abilities()
+
+elif chooseOption == "4":
+
+    input_habit = int(input(colored("Qué habitat de pokemons quieres ver (1,2,3,4,5,6,7,8)?: ", "blue")))
+    while input_habit not in (1, 2, 3, 4, 5,6,7,8):
+        input_habit = int(input(colored("Qué habitat de pokemons quieres ver (0,1,2,3,4,5,6,7,8 )?: ", "blue")))
+
+    def results_habitats(numHabit):
+        url_results_habitats = "https://pokeapi.co/api/v2/pokemon-habitat/"
+        response_results_habitats = requests.get(url_results_habitats)
+
+
+        if response_results_habitats.status_code == 200:
+
+            payload_results_habitats = response_results_habitats.json()
+            pokemon_results_habitats = payload_results_habitats.get('results', [])
+            print(pokemon_results_habitats[numHabit])
+            """
+            if pokemon_results_habitats:
+                for pokemon_results_habitats in pokemon_results_habitats:
+                    name_results_habitats = pokemon_results_habitats['name']
+                    print(name_results_habitats)
+            """
+    results_habitats(input_habit)       
+
+    def habitats(numGen):
+        if __name__ == '__main__':
+            url_gen = "https://pokeapi.co/api/v2/pokemon-habitat/" + str(numGen)
+
+        response_habit = requests.get(url_gen)
+        
+
+        if response_habit.status_code == 200:
+
+            payload_gen = response_habit.json()
+            pokemon_species = payload_gen.get('pokemon_species', [])
+        
+
+            if pokemon_species:
+                for pokemon_gen in pokemon_species:
+                    name_gen = pokemon_gen['name']
+                    print(name_gen)
+
+    habitats(input_habit)
 
 elif chooseOption == "5":
     print("Has elegido por tipo")
