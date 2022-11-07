@@ -44,3 +44,7 @@ class Book:
     def findByParam(self, finder: str):
         print(self.books)
         return list(filter(lambda item: item['id'] == finder, self.books))
+
+    def deleteById(self, id):
+        self.books = list(filter(lambda item: item['id'] != id, self.books))
+        return "Correctamente Eliminado"
