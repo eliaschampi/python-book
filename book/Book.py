@@ -42,7 +42,6 @@ class Book:
         return "Correctamente agregado", True
 
     def findByParam(self, finder: str):
-        print(self.books)
         return list(filter(lambda item: item['id'] == finder, self.books))
 
     def deleteById(self, id):
