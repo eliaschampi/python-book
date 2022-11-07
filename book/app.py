@@ -60,4 +60,11 @@ def callAction(option: str, bookinstance) -> bool:
             print(colored(message, "green"))
         return True
 
+    elif option == "6":
+        omision = colored(f"Por omisión ({utils.constants.BOOK_DB})", "blue")
+        path = input(f"Ruta del base de datos: {omision} => ")
+        message = bookinstance.saveBook(path or utils.constants.BOOK_DB)
+        print(colored(message, "green"))
+        return True
+
     return False

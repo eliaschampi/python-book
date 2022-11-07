@@ -1,4 +1,4 @@
-from utils.decorators import listToDict
+from utils.decorators import listToDict, dictToStrLine
 from utils.constants import DB_SEPARATOR
 from utils.validation import validateBookItem
 
@@ -48,3 +48,24 @@ class Book:
     def deleteById(self, id):
         self.books = list(filter(lambda item: item['id'] != id, self.books))
         return "Correctamente Eliminado"
+
+    def saveBook(self, db: str) -> str:
+
+        try:
+
+            with open(db, "w") as file:
+
+                titleItem = self.books[0]
+                
+                file.write(dictToStrLine(titleItem, True, self.__SEP))
+
+                for book in self.books:
+
+                    file.write(dictToStrLine(book, False, self.__SEP))
+                    
+        except Exception as error:
+            print(error)
+            exit()
+        else:
+            return "Correctamente guardado"
+    
