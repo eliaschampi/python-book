@@ -41,9 +41,6 @@ elif chooseOption == "2":
 
 elif chooseOption == "3":
     print("Estas son las habilidades de los pokemones: ")
-
-elif chooseOption == "3":
-    print("Estas son las habilidades de los pokemones: ")
     def pokemon_abilities(url_abil = 'https://pokeapi.co/api/v2/ability/', offset = 0):
         args = {'offset' : offset} if offset else {}
 
@@ -102,12 +99,7 @@ elif chooseOption == "4":
             payload_results_habitats = response_results_habitats.json()
             pokemon_results_habitats = payload_results_habitats.get('results', [])
             print(pokemon_results_habitats[numHabit])
-            """
-            if pokemon_results_habitats:
-                for pokemon_results_habitats in pokemon_results_habitats:
-                    name_results_habitats = pokemon_results_habitats['name']
-                    print(name_results_habitats)
-            """
+     
     results_habitats(input_habit)       
 
     def habitats(numGen):
@@ -132,24 +124,21 @@ elif chooseOption == "4":
 
 elif chooseOption == "5":
     print("Has elegido por tipo")
-    print("Has elegido por tipo ")
     input_type = input(colored("Qué tipo de pokemons quieres ver (1,2,3,4,...,20)?: ", "blue"))
     while input_type not in ("1", "2", "3", "4", "5","6","7","8","9"):
         input_type = input(colored("Qué tipo de pokemons quieres ver (1,2,3,4,...,20)?: ", "blue"))
 
     def types(numGen):
-        if __name__ == '__main__':
-            url_type = "https://pokeapi.co/api/v2/type/" + numGen
+        url_type = "https://pokeapi.co/api/v2/type/" + numGen
 
         response_type = requests.get(url_type)
         if response_type.status_code == 200:
             payload_type = response_type.json()
-            pokemon_type = payload_type.get('results', [])
-
-            if pokemon_type:
-                for pokemon_typ in pokemon_type:
-                    name_type = pokemon_typ['name']
-                    print(name_type)
+            
+            pokes = payload_type.get('pokemon', [])
+            for pokemon_typ in pokes:
+                name_type = pokemon_typ['pokemon']['name']
+                print(name_type)
 
     types(input_type)
 
