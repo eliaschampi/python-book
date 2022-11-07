@@ -1,32 +1,31 @@
-
 from termcolor import colored
-from utils import constants, validation, decorators
+import utils
 
 
 def showMenu() -> str:
 
     print(colored("MENU DEL PROGRAMA", "green"))
 
-    options = constants.BOOK_OPTIONS
+    options = utils.constants.BOOK_OPTIONS
 
     for key, value in options.items():
         print(key, " => ", value)
 
-    return validation.validateMenuOptions(options.keys(), "")
+    return utils.validation.validateMenuOptions(options.keys(), "")
 
 
 def callAction(option: str, bookinstance) -> bool:
 
     if option == "1":
-        omision = colored(f"Por omisión ({constants.BOOK_DB})", "blue")
+        omision = colored(f"Por omisión ({utils.constants.BOOK_DB})", "blue")
         path = input(f"Ruta del base de datos: {omision} => ")
-        bookinstance.loadBooks(path or constants.BOOK_DB)
+        bookinstance.loadBooks(path or utils.constants.BOOK_DB)
         print(colored("Correctamente cargado", "green"))
         return True
 
     elif option == "2":
         books = bookinstance.getAll()
-        decorators.printAsTableForm(books)
+        utils.decorators.printAsTableForm(books)
         return True
 
     elif option == "3":
@@ -51,7 +50,14 @@ def callAction(option: str, bookinstance) -> bool:
         finder = input(colored("Ingresa el id del libro para buscar => ", "magenta"))
         if finder:
             books = bookinstance.findByParam(finder)
-            decorators.printAsTableForm(books)
+            utils.decorators.printAsTableForm(books)
+        return True
+
+    elif option == "5":
+        finder = input(colored("Ingresa el id del libro para eliminar => ", "magenta"))
+        if finder:
+            message = bookinstance.deleteById(finder)
+            print(colored(message, "green"))
         return True
 
     return False
