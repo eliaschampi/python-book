@@ -22,3 +22,22 @@ def printAsTableForm(books: list):
         row = iter(book.values())
         print(cols.format(*row))
 
+
+def dictToStrLine(dictItem: dict, istitle: bool, seperator: str) -> str:
+
+    
+    linelist = dictItem.keys() if istitle else dictItem.values()
+
+    linestr = ""
+
+    lastitem = list(linelist)[-1]
+
+    for column in linelist:
+
+        if lastitem != column:
+            linestr += f" {column} {seperator}"
+        else:
+            linestr += f" {column}"
+
+    return f"{linestr} \n"
+
