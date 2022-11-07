@@ -1,3 +1,4 @@
  id | Título | Género | Editorial | Autor 
  1548 | Libro de Python | Programación | 1051548 | Elias Champi 
+ 1549 | Libro de Rust | Programación | 1051548 | Nancy Chañi 
  1550 | Libro de Golang | Programación | 1051548 | Naomy Cori 
